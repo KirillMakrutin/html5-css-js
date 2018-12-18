@@ -1,0 +1,22 @@
+li.second-li-element code {
+  color: green;
+}
+
+code {
+  color: red;
+  font-family: monospace;
+}
+
+h1 {
+  color: brown;
+  font-family: sans-serif;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+li:not(:first-child), ol > li {
+  background: black;
+  color: white;
+}
