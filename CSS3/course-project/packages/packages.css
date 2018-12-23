@@ -5,6 +5,10 @@
     width: 80%;
 }
 
+.package:hover {
+    border: 3px solid orange;
+}
+
 .package--highlighted {
     background: #0f661f;
     color: white;
