@@ -1,0 +1,29 @@
+.package {
+    background: #d5ffdc;
+    border: 3px solid #0e4f1f;
+    margin: 16px 0;
+    width: 80%;
+}
+
+.package--highlighted {
+    background: #0f661f;
+    color: white;
+}
+
+.package a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 32px;
+}
+
+.package__proposal {
+    color: #8D8D8D;
+}
+
+.package__description {
+    background: white;
+    border: 1px solid #0e4f1f;
+    color: #0e4f1f;
+    padding: 16px;
+}
