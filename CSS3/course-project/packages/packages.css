@@ -11,18 +11,19 @@ main {
 }
 
 .package {
-    background: #d5ffdc;
+    width: 80%;
+    margin: 16px 0;
     border: 4px solid #0e4f1f;
     border-left: none;
-    margin: 16px 0;
-    width: 80%;
     position: relative;
+    z-index: 0;
 }
 
 .package:hover,
 .package:active {
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    border-color: #ff5454; /* !important; */
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    border-color: #ff5454;
+    /* border-color: #ff5454 !important; */
 }
 
 .package a {
@@ -30,10 +31,6 @@ main {
     color: inherit;
     display: block;
     padding: 32px;
-}
-
-.package__subtitle {
-    color: #979797;
 }
 
 .package__badge {
@@ -45,14 +42,23 @@ main {
     color: white;
     background: #ff5454;
     padding: 8px;
+    z-index: 10;
+}
+
+.package__subtitle {
+    color: #979797;
 }
 
 .package__info {
-    background: white;
+    padding: 16px;
     border: 1px solid #0e4f1f;
     font-size: 20px;
     color: #0e4f1f;
-    padding: 16px;
+    background: white;
+}
+
+.clearfix {
+    clear: both;
 }
 
 #plus {
@@ -63,14 +69,13 @@ main {
     background: rgba(234, 252, 237, 0.95);
     float: right;
     border-right: none;
-    border-left:  4px solid #0e4f1f;
+    border-left: 4px solid #0e4f1f;
     text-align: right;
 }
 
-#free.package:hover,
-#free.package:active {
+#free:hover,
+#free:active {
     border-left-color: #ff5454;
-    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #premium {
@@ -83,8 +88,4 @@ main {
 
 #premium .package__subtitle {
     color: #bbb;
-}
-
-.clearfix {
-    clear: both;
 }
