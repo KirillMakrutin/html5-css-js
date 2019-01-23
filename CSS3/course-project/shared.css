@@ -43,6 +43,12 @@ body {
     vertical-align: middle;
 }
 
+@media (min-width: 40rem) {
+    .toggle-button {
+        display: none;
+    }
+}
+
 .toggle-button:focus {
     outline: none;
 }
@@ -61,8 +67,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     font-size: 1.3rem;
-    height: 1.7rem;
-    /* width: 20px; */
+    height: 3rem;
     display: inline-block;
     vertical-align: middle;
 }
@@ -73,10 +78,16 @@ body {
 }
 
 .main-nav {
-    display: inline-block;
+    display: none;
     text-align: right;
     width: calc(100% - 122px);
     vertical-align: middle;
+}
+
+@media (min-width: 40rem) {
+    .main-nav  {
+        display: inline-block;
+    }
 }
 
 .main-nav__items {
@@ -135,8 +146,14 @@ body {
 }
 
 .main-footer__link {
-    display: inline-block;
-    margin: 0 1rem;
+    margin: 1rem 0;
+}
+
+@media (min-width: 40rem) {
+    .main-footer__link {
+        display: inline-block;
+        margin: 0 1rem;
+    }
 }
 
 .main-footer__link a {
