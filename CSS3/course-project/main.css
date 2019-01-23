@@ -43,11 +43,6 @@
   text-align: center;
 }
 
-/*.plan__list {
-  width: 100%;
-  text-align: center;
-}*/
-
 .plan {
   background: #d5ffdc;
   text-align: center;
@@ -135,10 +130,13 @@
   text-align: center;
 }
 
-.key-feature {
-  display: inline-block;
-  width: 30%;
-  vertical-align: top;
+@media (min-width: 40rem) {
+  .key-feature {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    max-width: 25rem;
+  }
 }
 
 .key-feature__image {
