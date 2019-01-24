@@ -7,8 +7,8 @@
   margin: auto;
 }*/
 
-.testimonial:first-of-type {
-  margin-top: 6rem;
+main {
+  padding-top: 2.5rem;
 }
 
 .testimonial__image-container {
