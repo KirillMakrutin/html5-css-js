@@ -25,6 +25,7 @@ body {
     flex-flow: row wrap; /* row - from l to r - main; from t to b - cross */
     align-items: center; /*relatively to the cross axis*/
     justify-content: center; /*relatively to the main axis*/
+    align-content: center;
   }
 
 .item-1 {
