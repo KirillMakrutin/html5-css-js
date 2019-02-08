@@ -66,18 +66,17 @@ main {
     margin-left: auto;
     margin-right: auto;
     max-width: 1500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
 
   .testimonial__image-container {
     width: 66%;
-    display: inline-block;
-    vertical-align: middle;
     box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.3);
   }
 
   .testimonial__info {
-    display: inline-block;
-    vertical-align: middle;
     width: 30%;
   }
 }
