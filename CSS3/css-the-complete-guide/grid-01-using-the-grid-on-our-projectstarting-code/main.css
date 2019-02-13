@@ -21,6 +21,10 @@
     background: rgba(0, 128, 0, 0.5);
     border: 1px solid gray;
     border-collapse: collapse;
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 
 .el4 {
