@@ -1,8 +1,11 @@
 .container {
     margin: 20px;
     display: grid;
-    grid-template-columns: 200px 2fr 20% 1fr;
-    grid-template-rows: 5rem 2.5rem;
+    /*grid-template-columns: 200px 5rem 20% auto;*/
+    grid-template-columns:repeat(4, 1fr);
+    /*grid-template-rows: 5rem auto;*/
+    grid-template-rows: 5rem minmax(10px, 200px) 100px;
+    height: 500px;
 }
 
 .el1 {
