@@ -2,6 +2,10 @@ html, body {
   height: 100%;
   grid-template-columns: [col-1-start] 1fr [col-1-end col-2-start] 3fr [col-2-end];
   grid-template-rows: 4.5rem auto 4.5rem;
+  grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
 }
 
 body{
@@ -10,28 +14,25 @@ body{
 }
 
 header {
-  grid-column-start: col-1-start;
-  grid-column-end: col-2-end;
+  grid-area: header;
   background: blue;
   color: white;
 }
 
 main {
+  grid-area: main;
   background: red;
   color: white;
-  grid-column-start: col-2-start;
 }
 
 aside {
+  grid-area: sidebar;
   background: green;
   color: white;
-  grid-column-start: col-1-start;
-  grid-row-start: 2;
 }
 
 footer {
-  grid-column-start: col-1-start;
-  grid-column-end: col-2-end;
+  grid-area: footer;
   background: purple;
   color: white;
 }
