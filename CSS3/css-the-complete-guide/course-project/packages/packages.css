@@ -61,7 +61,8 @@ main {
     z-index: 10;
     width: 12rem;
     text-align: center;
-    transform: rotateZ(45deg) translateX(3.5rem) translateY(-1rem);
+    /*transform: rotateZ(45deg) translateX(3.5rem) translateY(-1rem);*/
+    transform: rotate(45deg) translate(3.5rem, -1rem);
     /*transform-origin: center;*/
 }
 
