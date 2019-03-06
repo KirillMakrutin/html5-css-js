@@ -19,6 +19,7 @@
     color: white;
     font-family: sans-serif;
     text-align: center;
+    backface-visibility: visible;
 }
 
 .box2 {
@@ -30,4 +31,5 @@
     font-family: sans-serif;
     text-align: center;
     transform: translateX(1rem) translateZ(-10rem);
+    backface-visibility: visible;
 }
