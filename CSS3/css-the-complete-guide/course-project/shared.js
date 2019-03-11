@@ -40,7 +40,7 @@ function closeModal()
 
   setTimeout(function (  ) {
     backdrop.style.display = 'none';
-  }, 500);
+  }, 200);
 
   if ( modal )
   {
@@ -49,10 +49,13 @@ function closeModal()
 }
 
 toggleBtn.addEventListener('click', function (  ) {
-  /*mobileNav.style.display = 'block';
-  backdrop.style.display = 'block';*/
-  backdrop.classList.add( 'open' );
-  mobileNav.classList.add('open');
+  backdrop.style.display = 'block';
+  mobileNav.style.display = 'block';
+
+  setTimeout(function () {
+    backdrop.classList.add( 'open' );
+    mobileNav.classList.add('open');
+  }, 10);
 });
 
 
