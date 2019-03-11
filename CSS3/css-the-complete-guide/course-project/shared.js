@@ -20,7 +20,10 @@ for ( var i = 0; i < selectPlanButtons.length; i++ )
   selectPlanButtons[i].addEventListener( 'click', function ( event ) {
     /*backdrop.style.display = 'block';
     modal.style.display = 'block';*/
-    backdrop.classList.add( 'open' );
+    backdrop.style.display = 'block';
+    setTimeout(function (  ) {
+      backdrop.classList.add( 'open' );
+    }, 10);
     if ( modal )
     {
       modal.classList.add( 'open' );
@@ -30,9 +33,15 @@ for ( var i = 0; i < selectPlanButtons.length; i++ )
 
 function closeModal()
 {
- /* backdrop.style.display = 'none';
-  modal.style.display = 'none';*/
+  /* backdrop.style.display = 'none';
+   modal.style.display = 'none';*/
+
   backdrop.classList.remove( 'open' );
+
+  setTimeout(function (  ) {
+    backdrop.style.display = 'none';
+  }, 500);
+
   if ( modal )
   {
     modal.classList.remove( 'open' );
