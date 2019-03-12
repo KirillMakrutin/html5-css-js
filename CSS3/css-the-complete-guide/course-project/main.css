@@ -49,6 +49,10 @@
   width: 100%;
 }
 
+.plan:hover {
+  animation: plan-lift 500ms ease-out forwards;
+}
+
 .plan--highlighted {
   background: #19b84c;
   color: white;
@@ -211,4 +215,16 @@
 .modal__action--negative:active {
   background: #ff5454;
   border-color: #ff5454;
+}
+
+@keyframes plan-lift {
+  0% {
+    transform: translateY(0);
+  }
+  33% {
+    transform: translateY(-1.5rem);
+  }
+  100% {
+    transform: translateY(-1rem);
+  }
 }
