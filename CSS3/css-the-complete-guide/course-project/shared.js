@@ -4,6 +4,7 @@ var selectPlanButtons = document.querySelectorAll( '.plan button' );
 var selectCloseModalButton = document.querySelector( '.modal__action--negative' );
 var toggleBtn = document.querySelector('.toggle-button');
 var mobileNav = document.querySelector( '.mobile-nav' );
+var ctaBtn = document.querySelector('.main-nav__item--cta');
 
 if (  selectCloseModalButton ) {
   selectCloseModalButton.addEventListener( 'click', closeModal );
@@ -58,4 +59,14 @@ toggleBtn.addEventListener('click', function (  ) {
   }, 10);
 });
 
+ctaBtn.addEventListener('animationstart', function (event) {
+  console.log("Animation started", event)
+});
 
+ctaBtn.addEventListener('animationend', function (event) {
+  console.log("Animation ended", event)
+});
+
+ctaBtn.addEventListener('animationiteration', function (event) {
+  console.log("Animation iteration", event)
+});
