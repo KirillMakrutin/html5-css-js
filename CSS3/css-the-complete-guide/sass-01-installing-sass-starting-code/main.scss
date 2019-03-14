@@ -1,6 +1,16 @@
-//$main-color: #521751;
 $colors: (main:#521751, secondary:#fa923f);
 $border-default: 0.05rem solid map_get($colors, main);
+$main-text-align: center;
+$main-box-sizing: border-box;
+$main-flex-direction: column;
+$main-padding: 3rem 0;
+
+@mixin display-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
 
 @import "typography.css";
 
@@ -14,60 +24,54 @@ body {
 }
 
 .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+  @include display-flex;
   flex: {
-    direction: column;
+    direction: $main-flex-direction;
     wrap: nowrap;
   };
   align-items: center;
-  padding: 3rem 0;
-  box-sizing: border-box;
+  padding: $main-padding;
+  box-sizing: $main-box-sizing;
 }
 
 .sass-introduction {
   border: $border-default;
   background: lighten(map_get($colors, main), 72%);
   padding: 2rem;
-  text-align: center;
+  text-align: $main-text-align;
   box-shadow: 0.2rem 0.2rem 0.1rem #ccc;
   width: 90%;
-  box-sizing: border-box;
-}
+  box-sizing: $main-box-sizing;
 
-.sass-introduction p {
-  margin: 0;
+  p {
+    margin: 0;
+  }
 }
 
 .sass-details {
   border: $border-default;
   background: lighten(map_get($colors, main), 72%);
   padding: 1rem;
-  text-align: center;
+  text-align: $main-text-align;
   margin: 2rem 0;
   width: 90%;
-  box-sizing: border-box;
+  box-sizing: $main-box-sizing;
 }
 
 .section-header {
-  border-bottom: $border-default
-}
+  border-bottom: $border-default;
 
-.section-header h1 {
-  margin: 0 0 1rem 0;
+  h1 {
+    margin: 0 0 1rem 0;
+  }
 }
 
 .documentation-links {
   list-style: none;
   margin: 1rem 0 0 0;
   padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
+  @include display-flex;
+  flex-direction: $main-flex-direction;
 
   li {
     margin: 0.2rem 0;
@@ -96,7 +100,7 @@ body {
   }
 
   .container {
-    padding: 3rem 0;
+    padding: $main-padding;
   }
 
   .sass-introduction,
