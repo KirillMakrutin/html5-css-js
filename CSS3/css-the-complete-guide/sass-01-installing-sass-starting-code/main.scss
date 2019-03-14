@@ -14,8 +14,10 @@ body {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  flex: {
+    direction: column;
+    wrap: nowrap;
+  };
   align-items: center;
   padding: 3rem 0;
   box-sizing: border-box;
@@ -74,8 +76,6 @@ body {
     display: block;
     padding: 0.2rem;
     border: 0.05rem solid #521751;
-
-
   }
 
   .documentation-link:hover,
