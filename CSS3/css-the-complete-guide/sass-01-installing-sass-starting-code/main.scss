@@ -1,20 +1,5 @@
-$colors: (main:#521751, secondary:#fa923f);
-$border-default: 0.05rem solid map_get($colors, main);
-$main-text-align: center;
-$main-box-sizing: border-box;
-$main-flex-direction: column;
-$size-default: 1rem;
-$size-tiny: 0.2rem;
-$main-padding: $size-default * 3 0;
-
-@mixin display-flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
-
-@import "typography.css";
+@import "_variables.scss";
+@import "typography.scss";
 
 html {
   font-size: 94.75%;
@@ -26,54 +11,60 @@ body {
 }
 
 .container {
-  @include display-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
   flex: {
-    direction: $main-flex-direction;
+    direction: column;
     wrap: nowrap;
-  };
+  }
   align-items: center;
-  padding: $main-padding;
-  box-sizing: $main-box-sizing;
+  padding: $size-default * 3 0;
+  box-sizing: border-box;
 }
 
 .sass-introduction {
   border: $border-default;
-  background: lighten(map_get($colors, main), 72%);
+  background: lighten(map-get($colors, main), 72%);
   padding: $size-default * 2;
-  text-align: $main-text-align;
+  text-align: center;
   box-shadow: $size-tiny $size-tiny $size-tiny / 2 #ccc;
   width: 90%;
-  box-sizing: $main-box-sizing;
+  box-sizing: border-box;
+}
 
-  p {
-    margin: 0;
-  }
+.sass-introduction p {
+  margin: 0;
 }
 
 .sass-details {
   border: $border-default;
-  background: lighten(map_get($colors, main), 72%);
-  padding: 1rem;
-  text-align: $main-text-align;
-  margin: $size-default 0;
+  background: lighten(map-get($colors, main), 72%);
+  padding: $size-default;
+  text-align: center;
+  margin: $size-default * 2 0;
   width: 90%;
-  box-sizing: $main-box-sizing;
+  box-sizing: border-box;
 }
 
 .section-header {
-  border-bottom: $border-default;
+  border-bottom: $size-tiny / 4 solid map-get($colors, main);
+}
 
-  h1 {
-    margin: 0 0 $size-default 2 0;
-  }
+.section-header h1 {
+  margin: 0 0 $size-default 0;
 }
 
 .documentation-links {
   list-style: none;
-  margin: 1rem 0 0 0;
+  margin: $size-default 0 0 0;
   padding: 0;
-  @include display-flex;
-  flex-direction: $main-flex-direction;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
 
   li {
     margin: $size-tiny 0;
@@ -82,27 +73,23 @@ body {
 
   .documentation-link {
     text-decoration: none;
-    color: map_get($colors, main);
+    color: map-get($colors, main);
     display: block;
     padding: $size-tiny;
-    border: $border-default
+    border: $border-default;
   }
 
   .documentation-link:hover,
   .documentation-link:active {
     color: white;
-    background: map_get($colors, secondary);
-    border-color: map_get($colors, secondary);
+    background: map-get($colors, secondary);
+    border-color: map-get($colors, secondary);
   }
 }
 
 @media (min-width: 40rem) {
   html {
     font-size: 125%;
-  }
-
-  .container {
-    padding: $main-padding;
   }
 
   .sass-introduction,
