@@ -3,7 +3,9 @@ $border-default: 0.05rem solid map_get($colors, main);
 $main-text-align: center;
 $main-box-sizing: border-box;
 $main-flex-direction: column;
-$main-padding: 3rem 0;
+$size-default: 1rem;
+$size-tiny: 0.2rem;
+$main-padding: $size-default * 3 0;
 
 @mixin display-flex {
   display: -webkit-box;
@@ -37,9 +39,9 @@ body {
 .sass-introduction {
   border: $border-default;
   background: lighten(map_get($colors, main), 72%);
-  padding: 2rem;
+  padding: $size-default * 2;
   text-align: $main-text-align;
-  box-shadow: 0.2rem 0.2rem 0.1rem #ccc;
+  box-shadow: $size-tiny $size-tiny $size-tiny / 2 #ccc;
   width: 90%;
   box-sizing: $main-box-sizing;
 
@@ -53,7 +55,7 @@ body {
   background: lighten(map_get($colors, main), 72%);
   padding: 1rem;
   text-align: $main-text-align;
-  margin: 2rem 0;
+  margin: $size-default 0;
   width: 90%;
   box-sizing: $main-box-sizing;
 }
@@ -62,7 +64,7 @@ body {
   border-bottom: $border-default;
 
   h1 {
-    margin: 0 0 1rem 0;
+    margin: 0 0 $size-default 2 0;
   }
 }
 
@@ -74,7 +76,7 @@ body {
   flex-direction: $main-flex-direction;
 
   li {
-    margin: 0.2rem 0;
+    margin: $size-tiny 0;
     background: white;
   }
 
@@ -82,7 +84,7 @@ body {
     text-decoration: none;
     color: map_get($colors, main);
     display: block;
-    padding: 0.2rem;
+    padding: $size-tiny;
     border: $border-default
   }
 
