@@ -1,4 +1,4 @@
-import Entity from "./Entity";
+import Hobbit from './hobbit';
 
 function butter(...rest) {
   let a = [1, 2, 3, ...rest];
@@ -7,5 +7,5 @@ function butter(...rest) {
 
 console.log(butter(4, 5, 6));
 
-let Merry = new Entity("Merry", 32);
-Merry.greet();
+let Frodo = new Hobbit("Frodo Baggins", 32);
+Frodo.greet();
