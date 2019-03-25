@@ -1,7 +1,11 @@
-let a = 'Hello';
-let b = 'world';
-let c = a + ' ' + b;
-console.log(c);
+import Entity from "./Entity";
 
-let d = `hello ${b}`;
-console.log(d);
+function butter(...rest) {
+  let a = [1, 2, 3, ...rest];
+  return a;
+}
+
+console.log(butter(4, 5, 6));
+
+let Merry = new Entity("Merry", 32);
+Merry.greet();
