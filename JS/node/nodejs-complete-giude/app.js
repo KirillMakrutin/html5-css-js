@@ -1,18 +1,43 @@
 const http = require("http");
+const fs = require("fs");
 
 const server = http.createServer((req, res) => {
-  const { url, method, headers } = req;
-  console.log("URL:", url);
-  console.log("METHOD:", method);
-  console.log("HEADERS:", headers);
+  const url = req.url;
 
   res.setHeader("Content-Type", "text/html");
+
   res.write(`
-    <html>
-        <head><title>My first Page</title></head>
-        <body><h1>Hello from my Node.js</h1></body>
-    </html>
-  `);
+  <html>
+      <head><title>Enter Message</title></head>
+      <body>
+      <h1>Enter Message</h1>
+      <form action='/message' method='POST'>
+      <input type='text' name='message'/>
+      <button type='submit'>Send</button>
+        </form>
+      `);
+
+  if (url === "/message" && req.method === "POST") {
+    const body = [];
+
+    req.on("data", chunk => {
+      console.log(chunk);
+      body.push(chunk);
+    });
+
+    req.on("end", () => {
+      // to String because we know that the body is string
+      const parsedBody = Buffer.concat(body).toString();
+      const message = parsedBody.split("=")[1];
+      fs.writeFileSync("message.txt", message);
+    });
+
+    res.write(`<h2>Saved</h2>`);
+  }
+
+  res.write(`</body>
+  </html>`);
+
   res.end();
 });
 
