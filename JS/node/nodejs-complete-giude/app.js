@@ -1,5 +1,4 @@
 const http = require("http");
-const fs = require("fs");
 
 const server = http.createServer((req, res) => {
   const url = req.url;
@@ -29,16 +28,24 @@ const server = http.createServer((req, res) => {
       // to String because we know that the body is string
       const parsedBody = Buffer.concat(body).toString();
       const message = parsedBody.split("=")[1];
-      fs.writeFileSync("message.txt", message);
+
+      res.write(`<h2>${message}</h2>`);
+      res.write(`</body>
+      </html>`);
+    
+      res.end();
     });
 
-    res.write(`<h2>Saved</h2>`);
+
+  }
+  else
+  {
+    res.write(`</body>
+    </html>`);
+  
+    res.end();
   }
 
-  res.write(`</body>
-  </html>`);
-
-  res.end();
 });
 
 server.listen(3000);
