@@ -20,7 +20,6 @@ const server = http.createServer((req, res) => {
     const body = [];
 
     req.on("data", chunk => {
-      console.log(chunk);
       body.push(chunk);
     });
 
@@ -33,10 +32,12 @@ const server = http.createServer((req, res) => {
       res.write(`</body>
       </html>`);
     
+      console.log('Message parsed');
+
       res.end();
     });
 
-
+    console.log('next line to After message parsed');
   }
   else
   {
