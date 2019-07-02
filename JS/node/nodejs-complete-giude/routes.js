@@ -44,4 +44,9 @@ const requesthandler = (req, res) => {
   }
 };
 
-module.exports = requesthandler;
+module.exports = {
+  handler: requesthandler,
+  someDummyText: "text"
+};
+
+// or simply module.exports = requesthandler; as default one
