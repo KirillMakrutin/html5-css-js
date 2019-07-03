@@ -7,7 +7,7 @@ const requesthandler = (req, res) => {
     <html>
         <head><title>Enter Message</title></head>
         <body>
-        <h1>Enter Message</h1>
+        <h1>Enter Message:</h1>
         <form action='/message' method='POST'>
         <input type='text' name='message'/>
         <button type='submit'>Send</button>
