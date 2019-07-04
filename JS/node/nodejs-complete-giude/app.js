@@ -1,6 +1,9 @@
 const express = require("express");
+const bodyParser = require("body-parser")
 
 const app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use("/", (req, res, next) => {
   console.log("this always runs");
@@ -8,15 +11,14 @@ app.use("/", (req, res, next) => {
   next();
 });
 
-app.use("/json", (req, res, next) => {
-  console.log("json");
-
-  res.send({
-    name: "Kirill",
-    age: 33,
-    some: "json"
-  });
+app.use("/add-product", (req, res, next) => {
+  res.send("<form action='product' method='POST'><input type='text' name='title'/><input type='submit' value='Save'/></form>");
 });
+
+app.use("/product", (req, res, next) => {
+  console.log(req.body.title);
+  res.redirect("/");
+})
 
 app.use("/", (req, res, next) => {
   console.log("main");
