@@ -7,6 +7,7 @@ const resource = require("./util/resource");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(resource("public")));
 
 // to handle all request to /admin/...
 app.use("/admin", adminRoutes);
