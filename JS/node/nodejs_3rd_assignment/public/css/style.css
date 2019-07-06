@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+  border-bottom: 3px solid #ddd;
+}
+
+main {
+  padding: 1rem;
+}
+
+.nav-items {
+  display: flex;
+  list-style: none;
+}
+
+.nav-item {
+  margin: 0 1rem;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #aa791d;
+}
+
+.nav-item a.active,
+.nav-item a:focus,
+.nav-item a:hover {
+  color: #111;
+}

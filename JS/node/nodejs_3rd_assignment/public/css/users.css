@@ -1,0 +1,11 @@
+#addUserBtn {
+  border: 2px solid #aa791d;
+  background: white;
+  color: #aa791d;
+}
+
+#addUserBtn:hover,
+#addUserBtn:active {
+  background: #aa791d;
+  color: #fff;
+}
