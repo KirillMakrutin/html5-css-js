@@ -6,6 +6,11 @@ const resource = require("./util/resource");
 
 const app = express();
 
+app.set("view engine", "pug");
+
+// it's a defualt value for views config varibale
+app.set("views", "views");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(resource("public")));
 
