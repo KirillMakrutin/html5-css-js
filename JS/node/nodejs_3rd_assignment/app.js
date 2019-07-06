@@ -3,7 +3,7 @@ const resource = require("./utils/resource");
 
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.static(resource("public")));
 
 app.get("/users", (req, res) => {
   res.sendFile(resource("views", "users.html"));
