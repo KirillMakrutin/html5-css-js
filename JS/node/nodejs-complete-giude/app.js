@@ -19,7 +19,7 @@ app.use("/admin", adminData.routers);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
-  res.status(404).sendFile(resource("views", "404.html"));
+  res.status(404).render("404");
 });
 
 app.listen(3000);
