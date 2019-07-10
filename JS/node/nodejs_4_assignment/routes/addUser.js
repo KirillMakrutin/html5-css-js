@@ -4,7 +4,8 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.render("addUser", {
-    pageTitle: "Add User"
+    pageTitle: "Add User",
+    path: "/"
   });
 });
 

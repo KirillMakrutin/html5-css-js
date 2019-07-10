@@ -3,8 +3,8 @@ extends layouts/main-layout.pug
 block content
     .container
         if users.length > 0
-            ul.user-items
+            ul.list-group
                 each user in users
-                    li.user-item #{user.username}
+                    li.list-group-item #{user.username}
         else
             h1 No users
