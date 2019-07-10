@@ -9,7 +9,11 @@ const app = express();
 
 // for handlebars we had to register engine name, the name we like,
 // but template should have same extension, e.g. .hbs
-app.engine("hbs", expressHbs());
+app.engine("hbs", expressHbs({
+  layoutsDir: "views/layouts", // default value
+  defaultLayout: "main",
+  extname: "hbs" // only applies to layouts
+}));
 app.set("view engine", "hbs");
 // it's a default value for views config varibale
 app.set("views", "views");
