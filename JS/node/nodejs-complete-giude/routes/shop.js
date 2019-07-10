@@ -9,7 +9,8 @@ router.get("/", (req, res, next) => {
   res.render("shop", {
     prods: products,
     pageTitle: "My Shop",
-    path: "/"
+    path: "/", 
+    layout: false
   });
 });
 
