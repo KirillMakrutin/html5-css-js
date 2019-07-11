@@ -1,6 +1,7 @@
 const express = require("express");
-const adminData = require("./routes/admin");
+const adminRouters = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const errorController = require("./controllers/error");
 const bodyParser = require("body-parser");
 const resource = require("./util/resource");
 
@@ -14,11 +15,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(resource("public")));
 
 // to handle all request to /admin/...
-app.use("/admin", adminData.routers);
+app.use("/admin", adminRouters);
 app.use(shopRoutes);
-
-app.use((req, res, next) => {
-  res.status(404).render("404", { pageTitle: "Error" });
-});
+app.use(errorController.get404);
 
 app.listen(3000);
