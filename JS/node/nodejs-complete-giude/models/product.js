@@ -1,34 +1,38 @@
 const fs = require("fs");
 const resource = require("../util/resource");
 
-const storagePath = resource("data", "products.json");
+const p = resource(
+  "data",
+  "products.json"
+);
 
 const getProductsFromFile = cb => {
-  fs.readFile(storagePath, (err, fileContent) => {
-    if (!err) {
-      return cb(JSON.parse(fileContent));
+  fs.readFile(p, (err, fileContent) => {
+    if (err) {
+      cb([]);
     } else {
-      return cb([]);
+      cb(JSON.parse(fileContent));
     }
   });
 };
 
 module.exports = class Product {
-  constructor(title) {
+  constructor(title, imageUrl, description, price) {
     this.title = title;
+    this.imageUrl = imageUrl;
+    this.description = description;
+    this.price = price;
   }
 
   save() {
     getProductsFromFile(products => {
       products.push(this);
-
-      fs.writeFile(storagePath, JSON.stringify(products), err => {
-        if (err) console.log(err);
+      fs.writeFile(p, JSON.stringify(products), err => {
+        console.log(err);
       });
     });
   }
 
-  // callback argument
   static fetchAll(cb) {
     getProductsFromFile(cb);
   }
