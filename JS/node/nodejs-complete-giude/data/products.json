@@ -1,9 +1,1 @@
-[
-    {
-        "id": "a1416460-a45a-11e9-9b99-050aa3db49bc",
-        "title": "Test",
-        "imageUrl": "http://pngimg.com/uploads/book/book_PNG2116.png",
-        "description": "Descr",
-        "price": "23"
-    }
-]
+[{"id":"a1416460-a45a-11e9-9b99-050aa3db49bc","title":"Test","imageUrl":"http://pngimg.com/uploads/book/book_PNG2116.png","description":"Descr","price":"23"},{"title":"test","imageUrl":"http://pngimg.com/uploads/book/book_PNG2116.png","description":"test desc","price":"10.66","id":"8b5038e0-a4e4-11e9-adbf-71ae642af320"}]
