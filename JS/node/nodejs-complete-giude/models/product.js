@@ -1,10 +1,8 @@
 const fs = require("fs");
+const uuid = require("uuid");
 const resource = require("../util/resource");
 
-const p = resource(
-  "data",
-  "products.json"
-);
+const p = resource("data", "products.json");
 
 const getProductsFromFile = cb => {
   fs.readFile(p, (err, fileContent) => {
@@ -25,6 +23,7 @@ module.exports = class Product {
   }
 
   save() {
+    this.id = uuid.v1();
     getProductsFromFile(products => {
       products.push(this);
       fs.writeFile(p, JSON.stringify(products), err => {
