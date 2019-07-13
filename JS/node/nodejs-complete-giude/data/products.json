@@ -1,1 +1,16 @@
-[{"id":"a1416460-a45a-11e9-9b99-050aa3db49bc","title":"Test","imageUrl":"http://pngimg.com/uploads/book/book_PNG2116.png","description":"Descr","price":"23"},{"title":"test","imageUrl":"http://pngimg.com/uploads/book/book_PNG2116.png","description":"test desc","price":"10.66","id":"8b5038e0-a4e4-11e9-adbf-71ae642af320"}]
+[
+  {
+    "id": "123245",
+    "title": "A Book",
+    "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
+    "description": "This is an awesome book!",
+    "price": "19"
+  },
+  {
+    "id": "72916a10-a550-11e9-afaf-aff87ec8d894",
+    "title": "new product name",
+    "imageUrl": "http://pngimg.com/uploads/book/book_PNG2116.png",
+    "description": "asdd",
+    "price": "10.04"
+  }
+]
