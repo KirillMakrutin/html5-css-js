@@ -4,6 +4,7 @@ const shopRoutes = require("./routes/shop");
 const errorController = require("./controllers/error");
 const bodyParser = require("body-parser");
 const resource = require("./util/resource");
+const sequelize = require("./util/database");
 
 const app = express();
 
@@ -19,4 +20,10 @@ app.use("/admin", adminRouters);
 app.use(shopRoutes);
 app.use(errorController.get404);
 
-app.listen(3000);
+// Syncronize models to the databese, create tables
+sequelize
+  .sync()
+  .then(result => {
+    app.listen(3000);
+  })
+  .catch();
