@@ -27,18 +27,18 @@ exports.getEditProduct = (req, res, next) => {
   }
   const prodId = req.params.productId;
   Product.findById(prodId)
-    .then(([rows]) => {
-      if (rows.length > 0) {
+    .then(([rows]) => (rows.length > 0 ? rows[0] : null))
+    .then(product => {
+      if (product) {
         res.render("admin/edit-product", {
           pageTitle: "Edit Product",
           path: "/admin/edit-product",
           editing: editMode,
-          product: rows[0]
+          product: product
         });
       } else {
         return res.redirect("/");
       }
-      const product = rows[0];
     })
     .catch(console.log);
 };
