@@ -19,7 +19,7 @@ app.use(express.static(resource("public")));
 
 // register middleware to have acces to dummy user
 app.use((req, res, next) => {
-  User.findById(1)
+  User.findByPk(1)
     .then(user => {
       req.user = user;
       next();
@@ -55,7 +55,7 @@ sequelize
     return user;
   })
   .then(user => {
-    console.log("Dummy admin user:", user);
+    console.log("Dummy admin user id:", user.id);
     app.listen(3000);
   })
   .catch();
