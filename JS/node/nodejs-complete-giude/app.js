@@ -49,8 +49,8 @@ Product.belongsToMany(Cart, { through: CartItem });
 // Syncronize models to the databese, create tables
 sequelize
   // will drop existing table and recreate them with the relations
-  .sync({ force: true })
-  //.sync()
+  //.sync({ force: true })
+  .sync()
   .then(result => {
     return User.findByPk(1);
   })
@@ -61,7 +61,18 @@ sequelize
     return user;
   })
   .then(user => {
-    console.log("Dummy admin user id:", user.id);
+    user
+      .getCart()
+      .then(cart => {
+        if (!cart) {
+          return user.createCart();
+        }
+
+        return cart;
+      })
+      .catch(console.log);
+  })
+  .then(() => {
     app.listen(3000);
   })
   .catch();
