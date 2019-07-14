@@ -7,6 +7,8 @@ const resource = require("./util/resource");
 const sequelize = require("./util/database");
 const Product = require("./models/product");
 const User = require("./models/user");
+const Cart = require("./models/cart");
+const CartItem = require("./models/cartItem");
 
 const app = express();
 
@@ -36,15 +38,19 @@ Product.belongsTo(User, {
   constraints: true,
   onDelete: "CASCADE"
 });
-
-// the next is options becuase of same above
 User.hasMany(Product);
+
+User.hasOne(Cart);
+Cart.belongsTo(User);
+
+Cart.belongsToMany(Product, { through: CartItem });
+Product.belongsToMany(Cart, { through: CartItem });
 
 // Syncronize models to the databese, create tables
 sequelize
   // will drop existing table and recreate them with the relations
-  //.sync({ force: true })
-  .sync()
+  .sync({ force: true })
+  //.sync()
   .then(result => {
     return User.findByPk(1);
   })
