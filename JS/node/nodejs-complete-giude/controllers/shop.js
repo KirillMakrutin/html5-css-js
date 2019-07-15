@@ -114,10 +114,16 @@ exports.postCartDeleteProduct = (req, res, next) => {
 };
 
 exports.getOrders = (req, res, next) => {
-  res.render("shop/orders", {
-    path: "/orders",
-    pageTitle: "Your Orders"
-  });
+  req.user
+    .getOrders({ include: ["products"] })
+    .then(orders => {
+      res.render("shop/orders", {
+        path: "/orders",
+        pageTitle: "Your Orders",
+        orders: orders
+      });
+    })
+    .catch(console.log);
 };
 
 exports.getCheckout = (req, res, next) => {
@@ -128,9 +134,13 @@ exports.getCheckout = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
+  let fetchedCart;
   req.user
     .getCart()
-    .then(cart => cart.getProducts())
+    .then(cart => {
+      fetchedCart = cart;
+      return cart.getProducts();
+    })
     .then(products => {
       return req.user
         .createOrder()
@@ -144,8 +154,9 @@ exports.postOrder = (req, res, next) => {
             })
           );
         })
-        .catch(coneol.log);
+        .catch(console.log);
     })
-    .then(reuslt => res.redirect("/orders"))
+    .then(() => fetchedCart.setProducts(null))
+    .then(() => res.redirect("/orders"))
     .catch(console.log);
 };
