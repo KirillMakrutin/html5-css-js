@@ -1,13 +1,15 @@
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
-const url = process.env.DB_CONN;
-console.log(url);
-
 let _db;
 
+const uri = process.env.DB_CONN;
+console.log(uri);
+const client = new MongoClient(uri, { useNewUrlParser: true });
+
 const mongoConnect = callback => {
-  MongoClient.connect(process.env.DB_CONN)
+  client
+    .connect()
     .then(client => {
       console.log("Mongodb connected");
       //_db = client.db("shop"); defined in the .env connect url
