@@ -1,10 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const adminRouters = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const errorController = require("./controllers/error");
 const bodyParser = require("body-parser");
 const resource = require("./util/resource");
-const { mongoConnect } = require("./util/database");
+const mongoose = require("mongoose");
 
 const User = require("./models/user");
 
@@ -32,6 +33,7 @@ app.use("/admin", adminRouters);
 app.use(shopRoutes);
 app.use(errorController.get404);
 
-mongoConnect(() => {
-  app.listen(3000);
-});
+mongoose
+  .connect(process.env.DB_CONN)
+  .then(result => app.listen(3000))
+  .catch(console.log);
