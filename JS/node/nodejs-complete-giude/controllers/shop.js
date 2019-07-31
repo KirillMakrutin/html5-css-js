@@ -43,11 +43,16 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  res.render("shop/cart", {
-    path: "/cart",
-    pageTitle: "Your Cart",
-    products: []
-  });
+  req.user
+    .getCart()
+    .then(products =>
+      res.render("shop/cart", {
+        path: "/cart",
+        pageTitle: "Your Cart",
+        products: products
+      })
+    )
+    .catch(console.log);
 };
 
 exports.postCart = (req, res, next) => {
