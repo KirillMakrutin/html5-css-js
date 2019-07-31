@@ -41,21 +41,35 @@ class User {
       return cartProduct.productId.toString() === product._id.toString();
     });
 
-    const updateCartItems = [...this.cart.items];
+    const updatedCartItems = [...this.cart.items];
 
     let newQuantity = 1;
     if (cartProductIndex >= 0) {
       newQuantity = this.cart.items[cartProductIndex].quantity + 1;
-      updateCartItems[cartProductIndex].quantity = newQuantity;
+      updatedCartItems[cartProductIndex].quantity = newQuantity;
     } else {
-      updateCartItems.push({
+      updatedCartItems.push({
         productId: new mongoDb.ObjectId(product._id),
         quantity: newQuantity
       });
     }
 
     const updatedCart = {
-      items: updateCartItems
+      items: updatedCartItems
+    };
+
+    return getDb()
+      .collection("users")
+      .updateOne({ _id: this._id }, { $set: { cart: updatedCart } });
+  }
+
+  deleteitemFromCart(productId) {
+    const updatedCartItems = this.cart.items.filter(
+      item => item.productId.toString() !== productId.toString()
+    );
+
+    const updatedCart = {
+      items: updatedCartItems
     };
 
     return getDb()
