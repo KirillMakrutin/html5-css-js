@@ -16,13 +16,28 @@ class User {
   }
 
   addToCart(product) {
-    // const cartProduct = this.cart.items.findIndex(cp => {
-    //   return cp._id === product._id;
-    // });
+    const cartProductIndex = this.cart.items.findIndex(cartProduct => {
+      console.log(cartProduct);
+      return cartProduct.productId.toString() === product._id.toString();
+    });
+
+    const updateCartItems = [...this.cart.items];
+
+    let newQuantity = 1;
+    if (cartProductIndex >= 0) {
+      newQuantity = this.cart.items[cartProductIndex].quantity + 1;
+      updateCartItems[cartProductIndex].quantity = newQuantity;
+    } else {
+      updateCartItems.push({
+        productId: new mongoDb.ObjectId(product._id),
+        quantity: newQuantity
+      });
+    }
 
     const updatedCart = {
-      items: [{ productId: new mongoDb.ObjectId(product._id), quantity: 1 }]
+      items: updateCartItems
     };
+
     return getDb()
       .collection("users")
       .updateOne({ _id: this._id }, { $set: { cart: updatedCart } });
