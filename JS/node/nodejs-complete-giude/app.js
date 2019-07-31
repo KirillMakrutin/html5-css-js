@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const resource = require("./util/resource");
 const mongoose = require("mongoose");
 
-const User = require("./models/user");
+//const User = require("./models/user");
 
 const app = express();
 
@@ -19,14 +19,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(resource("public")));
 
 // register middleware to have acces to dummy user
-app.use((req, res, next) => {
-  User.findById("5d3d604f1c9d4400007b2af6")
-    .then(user => {
-      req.user = new User(user.name, user.email, user.cart, user._id);
-      next();
-    })
-    .catch(console.log);
-});
+// app.use((req, res, next) => {
+//   User.findById("5d3d604f1c9d4400007b2af6")
+//     .then(user => {
+//       req.user = new User(user.name, user.email, user.cart, user._id);
+//       next();
+//     })
+//     .catch(console.log);
+// });
 
 // to handle all request to /admin/...
 app.use("/admin", adminRouters);

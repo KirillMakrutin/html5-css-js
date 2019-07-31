@@ -14,29 +14,13 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
 
-  new Product(title, price, description, imageUrl, req.user._id)
+  new Product({ title, price, description, imageUrl })
     .save()
     .then(result => {
       console.log(result);
       res.redirect("/admin/products");
     })
     .catch(console.log);
-
-  // sequelize automatically create associative methods
-  // but alternatively we can call Product.create and assign userId
-
-  // req.user
-  //   .createProduct({
-  //     title: title,
-  //     imageUrl: imageUrl,
-  //     price: price,
-  //     description: description
-  //   })
-  //   .then(result => {
-  //     console.log(result);
-  //     res.redirect("/admin/products");
-  //   })
-  //   .catch(console.log);
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -69,7 +53,14 @@ exports.postEditProduct = (req, res, next) => {
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
 
-  new Product(updatedTitle, updatedPrice, updatedDesc, updatedImageUrl, req.user._id, prodId)
+  new Product(
+    updatedTitle,
+    updatedPrice,
+    updatedDesc,
+    updatedImageUrl,
+    req.user._id,
+    prodId
+  )
     .update()
     .then(() => res.redirect("/admin/products"))
     .catch(console.log);
@@ -77,7 +68,7 @@ exports.postEditProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   //Product.findAll()
-  Product.fetchAll()
+  Product.find()
     .then(products => {
       res.render("admin/products", {
         prods: products,
