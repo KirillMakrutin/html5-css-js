@@ -69,7 +69,12 @@ exports.postEditProduct = (req, res, next) => {
 exports.getProducts = (req, res, next) => {
   //Product.findAll()
   Product.find()
+    //.select("title price")
+    // we can fully populated a refference with an object
+    //.populate("userId")
+    //to include certain fields .populate("userId", "name email")
     .then(products => {
+      console.log(products);
       res.render("admin/products", {
         prods: products,
         pageTitle: "Admin Products",
