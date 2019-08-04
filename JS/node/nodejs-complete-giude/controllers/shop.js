@@ -44,11 +44,11 @@ exports.getIndex = (req, res, next) => {
 
 exports.getCart = (req, res, next) => {
   req.user
-    .populate("cart.items.product")
+    .populate("cart.items.productId")
     .execPopulate()
     .then(user =>
       user.cart.items.map(item => {
-        const product = item.product;
+        const product = item.productId;
         return {
           _id: product._id,
           title: product.title,
@@ -79,10 +79,8 @@ exports.postCart = (req, res, next) => {
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {
-  const prodId = req.body.productId;
-
   req.user
-    .deleteitemFromCart(prodId)
+    .removeFromCart(req.body.productId)
     .then(() => res.redirect("/cart"))
     .catch(console.log);
 };

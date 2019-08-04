@@ -13,7 +13,7 @@ const userSchema = new Schema({
   cart: {
     items: [
       {
-        product: {
+        productId: {
           type: Schema.Types.ObjectId,
           ref: "Product",
           required: true
@@ -44,6 +44,14 @@ userSchema.methods.addToCart = function(product) {
     items: updatedCartItems
   };
   this.cart = updatedCart;
+  return this.save();
+};
+
+userSchema.methods.removeFromCart = function(productId) {
+  const updatedCartItems = this.cart.items.filter(
+    item => productId.toString() !== item.productId.toString()
+  );
+  this.cart.items = updatedCartItems;
   return this.save();
 };
 
