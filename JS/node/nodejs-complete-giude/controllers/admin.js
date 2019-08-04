@@ -14,7 +14,8 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
 
-  new Product({ title, price, description, imageUrl })
+  // we can also explicitly get _id from User model
+  new Product({ title, price, description, imageUrl, userId: req.user })
     .save()
     .then(result => {
       console.log(result);
