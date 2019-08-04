@@ -71,8 +71,8 @@ exports.getProducts = (req, res, next) => {
   Product.find()
     //.select("title price")
     // we can fully populated a refference with an object
-    //.populate("userId")
-    //to include certain fields .populate("userId", "name email")
+    //.populate("user")
+    //to include certain fields .populate("user", "name email")
     .then(products => {
       console.log(products);
       res.render("admin/products", {

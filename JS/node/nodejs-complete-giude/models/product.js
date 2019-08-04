@@ -12,7 +12,7 @@ const productSchema = new Schema({
   },
   description: String,
   imageUrl: String,
-  userId: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true
