@@ -24,6 +24,29 @@ const userSchema = new Schema({
   }
 });
 
+// should be a function that this be bound to schema
+userSchema.methods.addToCart = function(product) {
+  const cartProductIndex = this.cart.items.findIndex(cartProduct => {
+    return cartProduct.productId.toString() === product._id.toString();
+  });
+  const updatedCartItems = [...this.cart.items];
+  let newQuantity = 1;
+  if (cartProductIndex >= 0) {
+    newQuantity = this.cart.items[cartProductIndex].quantity + 1;
+    updatedCartItems[cartProductIndex].quantity = newQuantity;
+  } else {
+    updatedCartItems.push({
+      productId: product._id,
+      quantity: newQuantity
+    });
+  }
+  const updatedCart = {
+    items: updatedCartItems
+  };
+  this.cart = updatedCart;
+  return this.save();
+};
+
 module.exports = mongoose.model("User", userSchema);
 
 // const { getDb } = require("../util/database");
@@ -65,30 +88,6 @@ module.exports = mongoose.model("User", userSchema);
 //   }
 
 //   addToCart(product) {
-//     const cartProductIndex = this.cart.items.findIndex(cartProduct => {
-//       return cartProduct.productId.toString() === product._id.toString();
-//     });
-
-//     const updatedCartItems = [...this.cart.items];
-
-//     let newQuantity = 1;
-//     if (cartProductIndex >= 0) {
-//       newQuantity = this.cart.items[cartProductIndex].quantity + 1;
-//       updatedCartItems[cartProductIndex].quantity = newQuantity;
-//     } else {
-//       updatedCartItems.push({
-//         productId: new mongoDb.ObjectId(product._id),
-//         quantity: newQuantity
-//       });
-//     }
-
-//     const updatedCart = {
-//       items: updatedCartItems
-//     };
-
-//     return getDb()
-//       .collection("users")
-//       .updateOne({ _id: this._id }, { $set: { cart: updatedCart } });
 //   }
 
 //   deleteitemFromCart(productId) {
