@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const adminRouters = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const authRoutes = require("./routes/auth");
 const errorController = require("./controllers/error");
 const bodyParser = require("body-parser");
 const resource = require("./util/resource");
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 // to handle all request to /admin/...
 app.use("/admin", adminRouters);
 app.use(shopRoutes);
+app.use(authRoutes);
 app.use(errorController.get404);
 
 mongoose
