@@ -8,8 +8,14 @@ const bodyParser = require("body-parser");
 const resource = require("./util/resource");
 const mongoose = require("mongoose");
 const User = require("./models/user");
+const session = require("express-session");
+const MongoDbStore = require("connect-mongodb-session")(session);
 
 const app = express();
+const sessionStore = new MongoDbStore({
+  uri: process.env.DB_CONN,
+  collection: "sessions"
+});
 
 app.set("view engine", "ejs");
 // it's a default value for views config varibale
@@ -17,6 +23,14 @@ app.set("views", "views");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(resource("public")));
+app.use(
+  session({
+    secret: "my secret",
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore
+  })
+);
 
 // register middleware to have acces to dummy user
 app.use((req, res, next) => {
