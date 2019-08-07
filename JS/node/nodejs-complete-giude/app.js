@@ -34,25 +34,16 @@ app.use(
 
 // register middleware to have acces to dummy user
 app.use((req, res, next) => {
-  User.findOne()
-    .then(user => {
-      if (!user) {
-        return new User({
-          name: "Kirill",
-          email: "kirill@test.com",
-          cart: {
-            items: []
-          }
-        }).save();
-      } else {
-        return user;
-      }
-    })
-    .then(user => {
-      req.user = user;
-      next();
-    })
-    .catch(console.log);
+  if (req.session.user) {
+    User.findById(req.session.user._id)
+      .then(user => {
+        req.user = user;
+        next();
+      })
+      .catch(console.log);
+  } else {
+    next();
+  }
 });
 
 // to handle all request to /admin/...
