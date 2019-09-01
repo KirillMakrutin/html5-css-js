@@ -33,3 +33,10 @@ exports.postLogin = (req, res, next) => {
     })
     .catch(console.log);
 };
+
+exports.postLogout = (req, res, next) => {
+  req.session.destroy(err => {
+    console.log(err);
+    res.redirect("/");
+  });
+};
