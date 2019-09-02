@@ -44,7 +44,9 @@ exports.postLogout = (req, res, next) => {
   });
 };
 
-exports.postSignup = (req, res, next) => {};
+exports.postSignup = (req, res, next) => {
+  next();
+};
 
 exports.getSignup = (req, res, next) => {
   res.render("auth/signup", {
