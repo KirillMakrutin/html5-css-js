@@ -14,25 +14,15 @@ exports.postLogin = (req, res, next) => {
 
   User.findOne({ email: req.body.email })
     .then(user => {
-      if (!user) {
-        return new User({
-          name: "Any",
-          email: email,
-          cart: {
-            items: []
-          }
-        }).save();
+      if (user) {
+        req.session.isLoggedIn = true;
+        req.session.user = user;
+        req.session.save(err => {
+          res.redirect("/");
+        });
       } else {
-        return user;
+        res.redirect("/signup");
       }
-    })
-    .then(user => {
-      req.session.isLoggedIn = true;
-      req.session.user = user;
-      req.session.save(err => {
-        console.log(err);
-        res.redirect("/");
-      });
     })
     .catch(console.log);
 };
@@ -45,7 +35,29 @@ exports.postLogout = (req, res, next) => {
 };
 
 exports.postSignup = (req, res, next) => {
-  next();
+  const { email, password, confirmPassword } = req.body;
+  console.log("Passwords are the same:", password === confirmPassword);
+  User.findOne({ email: email })
+    .then(userDoc => {
+      if (userDoc) {
+        console.log(`${email} user already exists`);
+        return res.redirect("/signup");
+      } else {
+        const user = new User({
+          email: email,
+          password: password,
+          cart: {
+            items: []
+          }
+        });
+
+        return user.save();
+      }
+    })
+    .then(result => {
+      res.redirect("/login");
+    })
+    .catch(console.log);
 };
 
 exports.getSignup = (req, res, next) => {
