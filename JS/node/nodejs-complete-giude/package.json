@@ -17,6 +17,7 @@
     "pretty-quick": "^1.11.1"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-mongodb-session": "^2.2.0",
     "dotenv": "^8.0.0",
