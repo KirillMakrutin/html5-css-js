@@ -44,19 +44,18 @@ exports.postSignup = (req, res, next) => {
         console.log(`${email} user already exists`);
         return res.redirect("/signup");
       } else {
-        return bcrypt.hash(password, 12);
-      }
-    })
-    .then(hashedPassword => {
-      const user = new User({
-        email: email,
-        password: hashedPassword,
-        cart: {
-          items: []
-        }
-      });
+        return bcrypt.hash(password, 12).then(hashedPassword => {
+          const user = new User({
+            email: email,
+            password: hashedPassword,
+            cart: {
+              items: []
+            }
+          });
 
-      return user.save();
+          return user.save();
+        });
+      }
     })
     .then(result => {
       res.redirect("/login");
