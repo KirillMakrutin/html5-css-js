@@ -12,15 +12,29 @@ exports.getLogin = (req, res, next) => {
 
 exports.postLogin = (req, res, next) => {
   const email = req.body.email;
+  const password = req.body.password;
 
-  User.findOne({ email: req.body.email })
+  User.findOne({ email: email })
     .then(user => {
       if (user) {
-        req.session.isLoggedIn = true;
-        req.session.user = user;
-        req.session.save(err => {
-          res.redirect("/");
-        });
+        // verify pasword
+
+        bcrypt
+          .compare(password, user.password)
+          .then(doMatch => {
+            if (doMatch) {
+              req.session.isLoggedIn = true;
+              req.session.user = user;
+              req.session.save(err => {
+                res.redirect("/");
+              });
+            } else {
+              res.redirect("/login");
+            }
+          })
+          .catch(err => {
+            res.redirect("/login");
+          });
       } else {
         res.redirect("/signup");
       }
