@@ -11,6 +11,7 @@
             <div class="form-control">
                 <label for="email">E-Mail</label>
                 <input type="email" name="email" id="email">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
             </div>
             <div class="form-control">
                 <label for="password">Password</label>

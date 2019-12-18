@@ -10,12 +10,15 @@ const mongoose = require("mongoose");
 const User = require("./models/user");
 const session = require("express-session");
 const MongoDbStore = require("connect-mongodb-session")(session);
+const csrf = require("csurf");
 
 const app = express();
 const sessionStore = new MongoDbStore({
   uri: process.env.DB_CONN,
   collection: "sessions"
 });
+
+const csrfProtection = csrf();
 
 app.set("view engine", "ejs");
 // it's a default value for views config varibale
@@ -31,6 +34,9 @@ app.use(
     store: sessionStore
   })
 );
+
+// after session init
+app.use(csrfProtection);
 
 // register middleware to have acces to dummy user
 app.use((req, res, next) => {
