@@ -6,8 +6,7 @@ exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     path: "/login",
     pageTitle: "Login",
-    isAuthenticated: req.session.isLoggedIn,
-    csrfToken: req.csrfToken()
+    errorMessage: req.flash("error")
   });
 };
 
@@ -30,14 +29,17 @@ exports.postLogin = (req, res, next) => {
                 res.redirect("/");
               });
             } else {
+              req.flash("error", "Invalid email or password.");
               res.redirect("/login");
             }
           })
           .catch(err => {
+            req.flash("error", "Invalid email or password.");
             res.redirect("/login");
           });
       } else {
-        res.redirect("/signup");
+        req.flash("error", "Invalid email or password.");
+        res.redirect("/login");
       }
     })
     .catch(console.log);
@@ -82,6 +84,6 @@ exports.getSignup = (req, res, next) => {
   res.render("auth/signup", {
     path: "/signup",
     pageTitle: "Signup",
-    isAuthenticated: false
+    errorMessage: req.flash("error")
   });
 };

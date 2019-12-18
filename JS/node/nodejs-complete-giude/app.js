@@ -11,6 +11,7 @@ const User = require("./models/user");
 const session = require("express-session");
 const MongoDbStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
+const flash = require("connect-flash");
 
 const app = express();
 const sessionStore = new MongoDbStore({
@@ -37,6 +38,7 @@ app.use(
 
 // after session init
 app.use(csrfProtection);
+app.use(flash());
 
 // register middleware to have acces to dummy user
 app.use((req, res, next) => {
