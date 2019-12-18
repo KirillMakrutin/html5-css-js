@@ -52,6 +52,13 @@ app.use((req, res, next) => {
   }
 });
 
+// middleware to add values to every page
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
 // to handle all request to /admin/...
 app.use("/admin", adminRouters);
 app.use(shopRoutes);
