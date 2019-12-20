@@ -1,5 +1,18 @@
+require("dotenv").config();
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// const nodemailer = require("nodemailer");
+// const sendGridTransport = require("nodemailer-sendgrid-transport");
+
+// const transporter = nodemailer.createTransport(
+//   sendGridTransport({
+//     auth: {
+//       api_key: process.env.SENDGRID_API_KEY
+//     }
+//   })
+// );
 
 exports.getLogin = (req, res, next) => {
   console.log("Is authenticated: ", req.session.isLoggedIn);
@@ -76,7 +89,25 @@ exports.postSignup = (req, res, next) => {
     })
     .then(result => {
       res.redirect("/login");
+
+      // return transporter.sendMail({
+      //   to: email,
+      //   from: "shop@node-complete-guide.com",
+      //   subject: "Singup succeeded!",
+      //   html: "<h1>Welcome on board!</h1>"
+      // });
+      console.log("Sending email to: ", email);
+      const msg = {
+        to: email,
+        from: "shop@node-complete.com",
+        subject: "Sending with Twilio SendGrid is Fun",
+        text: "and easy to do anywhere, even with Node.js",
+        html: "<strong>and easy to do anywhere, even with Node.js</strong>"
+      };
+
+      return sgMail.send(msg);
     })
+    .then(result => console.log("The email has been sent"))
     .catch(console.log);
 };
 

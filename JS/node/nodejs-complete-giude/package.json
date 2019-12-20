@@ -17,6 +17,7 @@
     "pretty-quick": "^1.11.1"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
@@ -30,6 +31,8 @@
     "mongodb": "^3.2.7",
     "mongoose": "^5.6.7",
     "mysql2": "^1.6.5",
+    "nodemailer": "^6.4.2",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "pug": "^2.0.4",
     "sequelize": "^5.10.0",
     "uuid": "^3.3.2"
