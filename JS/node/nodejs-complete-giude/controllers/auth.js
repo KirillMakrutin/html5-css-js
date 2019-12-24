@@ -146,8 +146,11 @@ exports.postReset = (req, res, next) => {
           } else {
             console.log("Reseting password for user", userDoc);
 
+            const expDate = new Date();
+            expDate.setMinutes(expDate.getMinutes() + 10);
+
             userDoc.resetToken = token;
-            userDoc.resetTokenExpiration = Date.now() + 3600;
+            userDoc.resetTokenExpiration = expDate;
 
             return userDoc
               .save()
@@ -167,7 +170,7 @@ exports.postReset = (req, res, next) => {
                   subject: "Password reset",
                   html: `
                 <p>You requested password reset</p>
-                <p>Clicl this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>
+                <p>Clicl this <a href="http://localhost:3000/new-password?email=${email}&token=${token}">link</a> to set a new password.</p>
                 `
                 };
 
@@ -182,4 +185,63 @@ exports.postReset = (req, res, next) => {
         .catch(console.log);
     }
   });
+};
+
+exports.getNewPassword = (req, res, next) => {
+  const { email, token } = req.query;
+  const now = new Date();
+
+  console.log("Reset parameters", email, token, now);
+
+  User.findOne({
+    email: email,
+    resetToken: token,
+    resetTokenExpiration: { $gt: now }
+  })
+    .then(user => {
+      if (user) {
+        res.render("auth/new-password", {
+          path: "/new-password",
+          pageTitle: "Reset password",
+          errorMessage: req.flash("error"),
+          userId: user._id.toString(),
+          token: token
+        });
+      } else {
+        req.flash(
+          "error",
+          "Cannot reset password. Unknow user or token has expired"
+        );
+        return res.redirect("/reset");
+      }
+    })
+    .catch(console.log);
+};
+
+exports.postNewPassword = (req, res, next) => {
+  const { userId, token, password, confirmPassword } = req.body;
+
+  console.log(userId, token, password, confirmPassword);
+
+  console.log("Passwords are the same:", password === confirmPassword);
+  User.findById({ _id: userId })
+    .then(userDoc => {
+      console.log("User found:", userDoc);
+
+      if (userDoc && userDoc.resetToken === token) {
+        return bcrypt.hash(password, 12).then(hashedPassword => {
+          userDoc.password = hashedPassword;
+          userDoc.resetToken = null;
+          userDoc.resetTokenExpiration = null;
+
+          return userDoc.save();
+        });
+      } else {
+        req.flash("error", "Cannot reset password. Mismatched parameters");
+      }
+    })
+    .then(result => {
+      res.redirect("/login");
+    })
+    .catch(console.log);
 };
