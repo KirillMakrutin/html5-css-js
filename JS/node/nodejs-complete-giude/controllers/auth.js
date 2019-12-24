@@ -231,8 +231,8 @@ exports.postNewPassword = (req, res, next) => {
       if (userDoc && userDoc.resetToken === token) {
         return bcrypt.hash(password, 12).then(hashedPassword => {
           userDoc.password = hashedPassword;
-          userDoc.resetToken = null;
-          userDoc.resetTokenExpiration = null;
+          userDoc.resetToken = undefined;
+          userDoc.resetTokenExpiration = undefined;
 
           return userDoc.save();
         });
