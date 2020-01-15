@@ -64,7 +64,7 @@ exports.postEditProduct = (req, res, next) => {
 
   Product.findById(prodId)
     .then(product => {
-      if (product.userId !== req.user._id) {
+      if (product.userId.toString() !== req.user._id.toString()) {
         console.log("Unauthorized edit product attempt");
         return res.redirect("/");
       }
