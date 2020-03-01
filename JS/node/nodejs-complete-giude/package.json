@@ -29,7 +29,7 @@
     "express-handlebars": "^3.1.0",
     "express-session": "^1.16.2",
     "mongodb": "^3.2.7",
-    "mongoose": "^5.6.7",
+    "mongoose": "^5.7.5",
     "mysql2": "^1.6.5",
     "nodemailer": "^6.4.2",
     "nodemailer-sendgrid-transport": "^0.2.0",
