@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label>
+      Username:
+      <input type="text" name="name" id="person" />
+    </label>
+    <button type="button" id="builder">Save</button>
+
+    <div>
+      <h1>Names</h1>
+      <ul id="names"></ul>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      crossorigin
+    ></script>
+    <script src="./bundle.js"></script>
+    <script>
+      const pers = greeter.newPerson("Ivan");
+      pers.greet();
+
+      function ready(fn) {
+        if (document.readyState != "loading") {
+          fn();
+        } else {
+          document.addEventListener("DOMContentLoaded", fn);
+        }
+      }
+
+      ready(function() {
+        const watcher = greeter.watch("person");
+        document
+          .getElementById("builder")
+          .addEventListener("click", function() {
+            watcher("names");
+          });
+      });
+    </script>
+  </body>
+</html>
