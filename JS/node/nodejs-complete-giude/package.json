@@ -34,7 +34,7 @@
     "nodemailer": "^6.4.2",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "pug": "^2.0.4",
-    "sequelize": "^5.10.0",
+    "sequelize": "^5.15.1",
     "uuid": "^3.3.2"
   },
   "husky": {
